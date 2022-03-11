@@ -1,0 +1,10 @@
+DELIMITER $$
+CREATE OR REPLACE PROCEDURE procedura1()
+	BEGIN
+		SELECT DISTINCT CONCAT(a1.nume, CONCAT(' ', a2.nume)) AS "perechi"
+FROM agentie a1 JOIN oferta o1 ON(a1.id_agentie = o1.id_agentie)
+                JOIN oferta o2 ON(o1.id_spatiu = o2.id_spatiu) 
+                JOIN agentie a2 ON(a2.id_agentie = o2.id_agentie)
+WHERE o1.pret!=o2.pret AND a1.nume<a2.nume;
+	END $$
+DELIMITER ;
